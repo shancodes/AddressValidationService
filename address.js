@@ -28,32 +28,37 @@ xhr.onreadystatechange = function() {
   xhr.send();
 
   var searchBox = document.getElementById('search_address');
+  var address2 = document.getElementById('address2');
   var city = document.getElementById('city');
   var state = document.getElementById('state');
   var country = document.getElementById('country');
   var postalcode = document.getElementById('postalcode');
+  var searchBoxResults = document.getElementById('search_address_results');
 
   searchBox.addEventListener('input', function() {
     var searchTerm = this.value.toLowerCase();
     var matchingAddresses = addresses.filter(function(address) {
-      return address.state.toLowerCase().includes(searchTerm) || address.city.toLowerCase().includes(searchTerm) || address.country.toLowerCase().includes(searchTerm);
+      return address.state.toLowerCase().includes(searchTerm) || 
+      address.city.toLowerCase().includes(searchTerm) || 
+      address.country.toLowerCase().includes(searchTerm);
     });
-    console.log("matching address " + matchingAddresses);
 
-    searchBox.focus();
-    // var html = '';
-    // matchingAddresses.forEach(function(address) {
-    //   html += '<div>' + address.city + ', ' + address.state + ', ' + address.country + ', ' + address.postalcode + '</div>';
-    // });
-    // var results = document.getElementById('search-box-results');
-    // results.innerHTML = html;
+    searchBoxResults.innerHTML = '';
 
-    // var searchBoxResults = document.querySelectorAll('#search-box-results div');
-    // searchBoxResults.forEach(function(result) {
-    //   result.addEventListener('click', function() {
-    //     search_address.value = searchBox;
-    //     city.value = address.city;
-    //     state.value = address.state;
-    //   });
-    // });
+    matchingAddresses.forEach(function(address) {
+      var li = document.createElement('li');
+      li.textContent = address.search_address + ', ' + address.city + ', ' + address.state + ', ' + address.postalcode + ', ' + address.country;
+      li.addEventListener('click', function() {
+        search_address.value = address.search_address;
+        city.value = address.city;
+        state.value = address.state;
+        postalcode.value = address.postalcode;
+        country.value = address.country;
+        address2.focus();
+
+        searchBoxResults.innerHTML = '';
+
+      });
+      searchBoxResults.appendChild(li);
+    });
   });

@@ -8,39 +8,41 @@
     <script type="module" src="./address.js"></script>
   </head>
   <body>
-    <form id="address-form" action="" method="get" autocomplete="off">
+    <form id="address-form" action="" method="get">
       <p class="title">Address form</p>
       <p class="note"><em>* = required field</em></p>
-      <label class="full-field">
-        <span class="form-label">Deliver to*</span>
+      <label for="search_address" class="full-field">
+        <span class="form-label">Search Address*</span>
         <input
           id="search_address"
           name="search_address"
-          required
+          type="search_address"
           autocomplete="off"
+          required
         />
       </label>
+      <ul id="search_address_results"></ul>
       <label class="full-field">
         <span class="form-label">Apartment, unit, suite, or floor #</span>
-        <input id="address2" name="address2" />
+        <input id="address2" name="address2" type="address2" autocomplete="off"/>
       </label>
       <label class="full-field">
         <span class="form-label">City*</span>
-        <input id="city" name="city" required />
+        <input id="city" name="city" type="city" autocomplete="off" required />
       </label>
       <label class="slim-field-left">
         <span class="form-label">State/Province*</span>
-        <input id="state" name="state" required />
+        <input id="state" name="state" type="state" autocomplete="off" required />
       </label>
       <label class="slim-field-right" for="postal_code">
         <span class="form-label">Postal code*</span>
-        <input id="postalcode" name="postalcode" required />
+        <input id="postalcode" name="postalcode" type="postalcode" autocomplete="off" required />
       </label>
       <label class="full-field">
         <span class="form-label">Country/Region*</span>
-        <input id="country" name="country" required />
+        <input id="country" name="country" type="country" autocomplete="off" required />
       </label>
-      <button type="submit" class="my-button">Save address</button>
+      <button type="save" class="my-button">Save address</button>
       <input type="reset" value="Clear form" />
     </form>
     <script>
