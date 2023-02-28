@@ -35,6 +35,8 @@ xhr.onreadystatechange = function() {
   var postalcode = document.getElementById('postalcode');
   var searchBoxResults = document.getElementById('search_address_results');
 
+  var resultsPerPage = 5;
+
   searchBox.addEventListener('input', function() {
     var searchTerm = this.value.toLowerCase();
     var matchingAddresses = addresses.filter(function(address) {
@@ -43,22 +45,64 @@ xhr.onreadystatechange = function() {
       address.country.toLowerCase().includes(searchTerm);
     });
 
+    var totalPages = Math.ceil(matchingAddresses.length / resultsPerPage);
+
     searchBoxResults.innerHTML = '';
+    displayPage(0);
 
-    matchingAddresses.forEach(function(address) {
-      var li = document.createElement('li');
-      li.textContent = address.search_address + ', ' + address.city + ', ' + address.state + ', ' + address.postalcode + ', ' + address.country;
-      li.addEventListener('click', function() {
-        search_address.value = address.search_address;
-        city.value = address.city;
-        state.value = address.state;
-        postalcode.value = address.postalcode;
-        country.value = address.country;
-        address2.focus();
+    function displayPage(pageIndex) {
 
-        searchBoxResults.innerHTML = '';
+      var startIndex = pageIndex * resultsPerPage;
+      var endIndex = Math.min(startIndex + resultsPerPage, matchingAddresses.length);
 
-      });
-      searchBoxResults.appendChild(li);
-    });
+      searchBoxResults.innerHTML = '';
+
+      for (var i = startIndex; i < endIndex; i++) {
+        (function(address) {
+          var li = document.createElement('li');
+          li.textContent = address.search_address + ', ' + address.city + ', ' + address.state + ', ' + address.postalcode + ', ' + address.country;
+          li.addEventListener('click', function() {
+
+            search_address.value = address.search_address;
+            city.value = address.city;
+            state.value = address.state;
+            postalcode.value = address.postalcode;
+            country.value = address.country;
+            address2.focus();
+    
+            searchBoxResults.innerHTML = '';
+
+          });
+          searchBoxResults.appendChild(li);
+        })(matchingAddresses[i]);
+      }
+
+      var pagination = document.getElementById('pagination');
+      if (pagination) {
+        pagination.remove();
+      }
+
+      if (totalPages > 1) {
+        var pagination = document.createElement('div');
+        pagination.id = 'pagination';
+    
+        var previousButton = document.createElement('button');
+        previousButton.textContent = 'Previous';
+        previousButton.disabled = pageIndex === 0;
+        previousButton.addEventListener('click', function() {
+          displayPage(pageIndex - 1);
+        });
+        pagination.appendChild(previousButton);
+    
+        var nextPageIndex = pageIndex + 1;
+        var nextButton = document.createElement('button');
+        nextButton.textContent = 'Next';
+        nextButton.disabled = nextPageIndex === totalPages;
+        nextButton.addEventListener('click', function() {
+          displayPage(pageIndex + 1);
+        });
+        pagination.appendChild(nextButton);
+        searchBoxResults.appendChild(pagination);
+      }
+    }
   });
