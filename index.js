@@ -1,10 +1,15 @@
 const express = require('express');
 const path = require('path');
+const bodyparser = require('body-parser');
+const formatMap = require('./formats');
+
+console.log(formatMap);
 
 const app = express()
 const port = 3001
 
 app.use(express.static('public'));
+app.use(bodyparser.json());
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/public/form.html'));
@@ -19,7 +24,22 @@ app.get(`/:country/search`, (req, res) => {
 });
 
 app.post(`/:country/validate`, (req, res) => {
-    res.send("TODO Implementation - Country address validation");
+    console.log(req.params.country);
+    const country = req.params.country;
+    const data = req.body;
+    const schema = formatMap[country];
+    let response;
+    if (schema) {
+        response = schema.validate(data);
+        if(response.error) {
+            res.send(response.error.message);
+        } else {
+            res.send(response);
+        }
+        
+    } else {
+        res.json("Country Not Supported");
+    }    
 });
 
 app.get('/search', (req,res) =>{
