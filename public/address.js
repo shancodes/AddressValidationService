@@ -1,3 +1,5 @@
+import stateFields from './displayForm.js';
+
 var xhr = new XMLHttpRequest();
 
 xhr.open('GET', 'address.csv',true);
@@ -33,8 +35,6 @@ xhr.onreadystatechange = function() {
   const clearButton = document.getElementById('clear');
   var searchResults = document.getElementById('search_results');
 
-  var resultsPerPage = 20;
-
   searchButton.addEventListener('click', (event) => {
     event.preventDefault();
     var country = document.getElementById('country');
@@ -53,9 +53,6 @@ xhr.onreadystatechange = function() {
       state: state.value.toLowerCase(),
       postalCode: postalCode.value.toLowerCase(),
     };
-
-    console.log("searchterms");
-    console.log(searchTerms);
 
     let matchingAddresses = [];
 
@@ -80,7 +77,6 @@ xhr.onreadystatechange = function() {
       searchResults.innerHTML = 'No matching addresses found';
       return;
     }
-    var totalPages = Math.ceil(matchingAddresses.length / resultsPerPage);
 
     searchResults.innerHTML = '';
 
@@ -90,63 +86,74 @@ xhr.onreadystatechange = function() {
       searchResults.appendChild(li);
     });
 
-    displayPage(0);
-    function displayPage(pageIndex) {
+    const selectedCountry = country.value;
+    const fields = stateFields[selectedCountry];
+    const headers = fields.map(field => field.label);
+    displayResults(searchResults);
 
-      var startIndex = pageIndex * resultsPerPage;
-      var endIndex = Math.min(startIndex + resultsPerPage, matchingAddresses.length);
+    function displayResults(searchResults) {
+      var table = document.createElement('table');
+    
+      var headerRow = document.createElement('tr');
+      for (var i = 0; i < headers.length; i++) {
+        var headerCell = document.createElement('th');
+        headerCell.textContent = headers[i];
+        headerRow.appendChild(headerCell);
+      }
+      table.appendChild(headerRow);
+    
+      for (var i = 0; i < matchingAddresses.length; i++) {
+        var row = document.createElement('tr');
+        var address = matchingAddresses[i];
+    
+        var nameCell = document.createElement('td');
+        nameCell.textContent = address.name;
+        row.appendChild(nameCell);
+    
+        var address1Cell = document.createElement('td');
+        address1Cell.textContent = address.address1;
+        row.appendChild(address1Cell);
+    
+        var address2Cell = document.createElement('td');
+        address2Cell.textContent = address.address2;
+        row.appendChild(address2Cell);
+    
+        var cityCell = document.createElement('td');
+        cityCell.textContent = address.city;
+        row.appendChild(cityCell);
+    
+        var stateCell = document.createElement('td');
+        stateCell.textContent = address.state;
+        row.appendChild(stateCell);
+    
+        var postalCodeCell = document.createElement('td');
+        postalCodeCell.textContent = address.postalCode;
+        row.appendChild(postalCodeCell);
+    
+        table.appendChild(row);
 
+        row.addEventListener('click', function() {
+          populateFormFields(address);
+        });
+      }
+    
+      var resultsContainer = document.getElementById('search_results');
+      resultsContainer.innerHTML = '';
+      resultsContainer.appendChild(table);
+    }
+
+    function populateFormFields(address) {
+      document.getElementById('name').value = address.name;
+      document.getElementById('address1').value = address.address1;
+      document.getElementById('address2').value = address.address2;
+      document.getElementById('city').value = address.city;
+      document.getElementById('state').value = address.state;
+      document.getElementById('postalCode').value = address.postalCode;
+
+      if(address2.value == 'undefined')
+        document.getElementById('address2').value = '';
+      address2.focus();
       searchResults.innerHTML = '';
-
-      for (var i = startIndex; i < endIndex; i++) {
-        (function(address) {
-          var li = document.createElement('li');
-          li.textContent = address.name + ', ' + address.country + ', ' + address.address1 + ', ' + address.city + ', ' + address.state + ', ' + address.postalCode;
-          li.addEventListener('click', function() {
-
-            country.value = address.country;
-            name.value = address.name;
-            address1.value = address.address1;
-            city.value = address.city;
-            state.value = address.state;
-            postalCode.value = address.postalCode;
-            
-            address2.focus();
-    
-            searchResults.innerHTML = '';
-
-          });
-          searchResults.appendChild(li);
-        })(matchingAddresses[i]);
-      }
-
-      var pagination = document.getElementById('pagination');
-      if (pagination) {
-        pagination.remove();
-      }
-
-      if (totalPages > 1) {
-        var pagination = document.createElement('div');
-        pagination.id = 'pagination';
-    
-        var previousButton = document.createElement('button');
-        previousButton.textContent = 'Previous';
-        previousButton.disabled = pageIndex === 0;
-        previousButton.addEventListener('click', function() {
-          displayPage(pageIndex - 1);
-        });
-        pagination.appendChild(previousButton);
-    
-        var nextPageIndex = pageIndex + 1;
-        var nextButton = document.createElement('button');
-        nextButton.textContent = 'Next';
-        nextButton.disabled = nextPageIndex === totalPages;
-        nextButton.addEventListener('click', function() {
-          displayPage(pageIndex + 1);
-        });
-        pagination.appendChild(nextButton);
-        searchResults.appendChild(pagination);
-      }
     }
   });
 
