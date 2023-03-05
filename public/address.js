@@ -30,6 +30,7 @@ xhr.onreadystatechange = function() {
   xhr.send();
 
   const searchButton = document.getElementById('submit');
+  const clearButton = document.getElementById('clear');
   var searchResults = document.getElementById('search_results');
 
   var resultsPerPage = 20;
@@ -147,4 +148,8 @@ xhr.onreadystatechange = function() {
         searchResults.appendChild(pagination);
       }
     }
+  });
+
+  clearButton.addEventListener('click', () => {
+    searchResults.innerHTML = '';
   });
