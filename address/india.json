@@ -1,0 +1,172 @@
+[
+  {
+    "name": "Sed Leo Corporation",
+    "addressLine1": "530-8708 Convallis, Street",
+    "city": "Itanagar",
+    "region": "Arunachal Pradesh",
+    "pincode": "243157",
+    "country": "India"
+  },
+  {
+    "name": "Sed Diam Lorem Corp.",
+    "addressLine1": "P.O. Box 623, 9425 Vulputate Avenue",
+    "city": "Vidisha",
+    "region": "Madhya Pradesh",
+    "pincode": "805842",
+    "country": "India"
+  },
+  {
+    "name": "Parturient Corporation",
+    "addressLine1": "504-3286 Eu Street",
+    "city": "Shillong",
+    "region": "Meghalaya",
+    "pincode": "601322",
+    "country": "India"
+  },
+  {
+    "name": "Proin Mi Industries",
+    "addressLine1": "1744 Sociis Rd.",
+    "city": "Panjim",
+    "region": "Goa",
+    "pincode": "416247",
+    "country": "India"
+  },
+  {
+    "name": "Duis Sit Amet Limited",
+    "addressLine1": "Ap #856-8058 Lacus, Road",
+    "city": "Hindupur",
+    "region": "Andhra Pradesh",
+    "pincode": "727645",
+    "country": "India"
+  },
+  {
+    "name": "Dui Nec Urna Foundation",
+    "addressLine1": "Ap #810-4342 Tempor St.",
+    "city": "Purnea",
+    "region": "Jharkhand",
+    "pincode": "743238",
+    "country": "India"
+  },
+  {
+    "name": "Morbi Industries",
+    "addressLine1": "Ap #591-1285 Quis, Av.",
+    "city": "Delhi",
+    "region": "Delhi",
+    "pincode": "163464",
+    "country": "India"
+  },
+  {
+    "name": "Cras Dictum Limited",
+    "addressLine1": "5133 Purus Rd.",
+    "city": "Amravati",
+    "region": "Maharastra",
+    "pincode": "657362",
+    "country": "India"
+  },
+  {
+    "name": "Aliquam Adipiscing Lobortis Company",
+    "addressLine1": "P.O. Box 838, 5717 Sapien, Ave",
+    "city": "Sirsa",
+    "region": "Haryana",
+    "pincode": "968340",
+    "country": "India"
+  },
+  {
+    "name": "Nisl Nulla Inc.",
+    "addressLine1": "126-5681 Lacinia St.",
+    "city": "Silvassa",
+    "region": "Dadra and Nagar Haveli",
+    "pincode": "147085",
+    "country": "India"
+  },
+  {
+    "name": "Knight",
+    "addressLine1": "Ap #810-4342 Tempor St.",
+    "addressLine2": "Ap #593-391 Ipsum St.",
+    "city": "Purnea",
+    "region": "Jharkhand",
+    "pincode": "743238",
+    "country": "India"
+  },
+  {
+    "name": "Church",
+    "addressLine1": "Ap #591-1285 Quis, Av.",
+    "addressLine2": "P.O. Box 966, 6272 Quisque Road",
+    "city": "Delhi",
+    "region": "Delhi",
+    "pincode": "163464",
+    "country": "India"
+  },
+  {
+    "name": "Leonard",
+    "addressLine1": "5133 Purus Rd.",
+    "addressLine2": "8389 Duis Ave",
+    "city": "Amravati",
+    "region": "Maharastra",
+    "pincode": "657362",
+    "country": "India"
+  },
+  {
+    "name": "Leonard",
+    "addressLine1": "P.O. Box 838, 5717 Sapien, Ave",
+    "addressLine2": "Ap #581-5284 Pharetra. Road",
+    "city": "Sirsa",
+    "region": "Haryana",
+    "pincode": "968340",
+    "country": "India"
+  },
+  {
+    "name": "Ford",
+    "addressLine1": "126-5681 Lacinia St.",
+    "addressLine2": "761-8293 Hymenaeos. Avenue",
+    "city": "Silvassa",
+    "region": "Dadra and Nagar Haveli",
+    "pincode": "147085",
+    "country": "India"
+  },
+  {
+    "name": "Mcmahon",
+    "addressLine1": "Ap #763-3527 Gravida St.",
+    "addressLine2": "558 Tempor Rd.",
+    "city": "Ganganagar",
+    "region": "Rajasthan",
+    "pincode": "942423",
+    "country": "India"
+  },
+  {
+    "name": "Long",
+    "addressLine1": "P.O. Box 411, 3706 Euismod Ave",
+    "addressLine2": "208-1039 Erat Ave",
+    "city": "Dibrugarh",
+    "region": "Assam",
+    "pincode": "842059",
+    "country": "India"
+  },
+  {
+    "name": "Contreras",
+    "addressLine1": "5830 Interdum Street",
+    "addressLine2": "Ap #529-5710 Aliquam Ave",
+    "city": "Kohima",
+    "region": "Nagaland",
+    "pincode": "805117",
+    "country": "India"
+  },
+  {
+    "name": "Cain",
+    "addressLine1": "922 Donec St.",
+    "addressLine2": "943-6530 Dictum Rd.",
+    "city": "Chandigarh",
+    "region": "Chandigarh",
+    "pincode": "332135",
+    "country": "India"
+  },
+  {
+    "name": "Lynn",
+    "addressLine1": "3707 Pede Ave",
+    "addressLine2": "799-6727 Tincidunt, Road",
+    "city": "Gangtok",
+    "region": "Sikkim",
+    "pincode": "872262",
+    "country": "India"
+  }
+]
