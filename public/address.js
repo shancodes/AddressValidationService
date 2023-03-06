@@ -1,6 +1,7 @@
 import stateFields from './displayForm.js';
 
 var xhr = new XMLHttpRequest();
+const validateRequest = new XMLHttpRequest()
 
 xhr.open('GET', 'address.csv',true);
 var addresses = [];
@@ -33,7 +34,66 @@ xhr.onreadystatechange = function() {
 
   const searchButton = document.getElementById('submit');
   const clearButton = document.getElementById('clear');
+  const validateButton = document.getElementById('validate');
   var searchResults = document.getElementById('search_results');
+
+  validateButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    var addressToValidate = {}
+    const country = document.getElementById('country').selectedOptions[0].value;
+    const name = document.getElementById('name').value;
+    const address1= document.getElementById('address1').value;
+    const address2= document.getElementById('address2').value;
+    const city= document.getElementById('city').value;
+    const state= document.getElementById('state').value;
+    const postalCode= document.getElementById('postalCode').value;
+    if (country) {
+      console.log(country);
+      addressToValidate['country'] = country.toLowerCase();
+    }
+    if (state) {
+      console.log(state);
+      addressToValidate['state'] = state.toLowerCase();
+    }
+    if (city) {
+      console.log(city);
+      addressToValidate['city'] = city.toLowerCase();
+    }
+    if(postalCode) {
+      console.log(postalCode);
+      addressToValidate['zipCode'] = postalCode.toLowerCase();
+    }
+    if(address1) {
+      console.log(address1);
+      addressToValidate['addressLine1'] = address1.toLowerCase();
+    }
+    if(address2) {
+      console.log(address2);
+      addressToValidate['addressLine2'] = address2.toLowerCase();
+    }
+    if(name) {
+      console.log(name);
+      addressToValidate['name'] = name.toLowerCase();
+    }
+
+    console.log(JSON.stringify(addressToValidate));
+   
+    validateRequest.open('POST', `http://localhost:3001/${addressToValidate['country']}/validate`);
+    validateRequest.setRequestHeader('Content-Type', 'application/json');
+    validateRequest.send(JSON.stringify(addressToValidate));
+  })
+
+  validateRequest.onload = () => {
+    // print JSON response
+    if (validateRequest.status >= 200 && validateRequest.status < 300) {
+      alert("Success!!Address is validated");
+    }
+    else {
+      alert(validateRequest.responseText);
+    }
+    
+  }
+
 
   searchButton.addEventListener('click', (event) => {
     event.preventDefault();

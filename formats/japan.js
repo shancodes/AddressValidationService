@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const japan = Joi.object({
-    fullName: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
+    name: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
     .min(3)
     .max(100)
     .required(),

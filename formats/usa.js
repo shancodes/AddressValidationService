@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
-const us = Joi.object({
-    fullName: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
+const usa = Joi.object({
+    name: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
     .min(3)
     .max(100)
     .required(),
@@ -23,7 +23,7 @@ const us = Joi.object({
     .max(100)
     .required(),
 
-    zipcode: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
+    zipCode: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
     .required(),
 
     country: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
@@ -32,5 +32,5 @@ const us = Joi.object({
     .required()
 });
 
-module.exports = us;
+module.exports = usa;
 

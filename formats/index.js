@@ -1,4 +1,4 @@
-const us = require('./us');
+const usa = require('./usa');
 const uk = require('./uk');
 const india = require('./india');
 const denmark = require('./denmark');
@@ -10,7 +10,7 @@ const brazil = require('./brazil');
 const canada = require('./canada');
 
 const formatMaps = {
-    "us": us,
+    "usa": usa,
     "uk": uk,
     "india": india,
     "denmark": denmark,

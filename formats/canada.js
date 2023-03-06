@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const canada = Joi.object({
-    fullName: Joi.string()
+    name: Joi.string()
     .min(3)
     .max(100)
     .required(),

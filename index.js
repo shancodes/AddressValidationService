@@ -44,6 +44,7 @@ app.post(`/:country/validate`, (req, res) => {
     if (schema) {
         response = schema.validate(data);
         if(response.error) {
+            res.status(400);
             res.send(response.error.message);
         } else {
             res.send(response);

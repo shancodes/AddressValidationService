@@ -2,7 +2,7 @@ const Joi = require('joi');
 const pattern = /^[a-zA-Z0-9\s]+$/;
 
 const brazil = Joi.object({
-    fullName: Joi.string()
+    name: Joi.string()
     .min(3)
     .max(100)
     .required(),
