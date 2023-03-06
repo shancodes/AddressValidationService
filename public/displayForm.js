@@ -30,6 +30,46 @@ const stateFields = {
     { label: 'State', id: 'state', name: 'state', type: 'text' },
     { label: 'Pin Code', id: 'postalCode', name: 'postalCode', type: 'text' }
   ],
+  Brazil: [
+    { label: 'Name', id: 'name', name: 'name', type: 'text' },
+    { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
+    { label: 'Province Code ', id: 'provincecode', name: 'provincecode', type: 'text' },
+    { label: 'Post Code', id: 'postalCode', name: 'postalCode', type: 'text' }
+  ],
+  Denmark: [
+    { label: 'Name', id: 'name', name: 'name', type: 'text' },
+    { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
+    { label: 'Zip Code', id: 'postalCode', name: 'postalCode', type: 'text' },
+    { label: 'Postal District ', id: 'postaldistrict', name: 'postaldistrict', type: 'text' }
+  ],
+  Italy: [
+    { label: 'Name', id: 'name', name: 'name', type: 'text' },
+    { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
+    { label: 'Postal Code', id: 'postalCode', name: 'postalCode', type: 'text' },
+    { label: 'City ', id: 'city', name: 'city', type: 'text' },
+    { label: 'Province Code ', id: 'provincecode', name: 'provincecode', type: 'text' }
+  ],
+  Japan: [
+    { label: 'Name', id: 'name', name: 'name', type: 'text' },
+    { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
+    { label: 'Postal Code', id: 'postalCode', name: 'postalCode', type: 'text' },
+    { label: 'City/Locality', id: 'city', name: 'city', type: 'text' }
+  ],
+  Mexico: [
+    { label: 'Name', id: 'name', name: 'name', type: 'text' },
+    { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
+    { label: 'Address Line 2', id: 'address2', name: 'address2', type: 'text' },
+    { label: 'Post Code', id: 'postalCode', name: 'postalCode', type: 'text' },
+    { label: 'City', id: 'city', name: 'city', type: 'text' },
+    { label: 'State', id: 'state', name: 'state', type: 'text' }
+  ],
+  Spain: [
+    { label: 'Name', id: 'name', name: 'name', type: 'text' },
+    { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
+    { label: 'Address Line 2', id: 'address2', name: 'address2', type: 'text' },
+    { label: 'Post Code', id: 'postalCode', name: 'postalCode', type: 'text' },
+    { label: 'City', id: 'city', name: 'city', type: 'text' }
+  ],
   All: [
     { label: 'Name', id: 'name', name: 'name', type: 'text' },
     { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
