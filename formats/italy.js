@@ -1,40 +1,33 @@
 const Joi = require('joi');
 
 const italy = Joi.object({
-    fullName: Joi.string()
-    .alphanum()
+    fullName: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
     .min(3)
     .max(100)
     .required(),
 
-    addressLine1: Joi.string()
-    .alphanum()
+    addressLine1: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
     .min(3)
     .max(100)
     .required(),
 
-    postcode: Joi.string()
+    postcode: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
     .length(5)
-    .alphanum()
     .required(),
 
-    addressLine2: Joi.string()
-    .alphanum(),
+    addressLine2: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/)),
 
-    city: Joi.string()
-    .alphanum()
+    city: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
     .min(3)
     .max(100)
     .required(),
 
-    provincecode: Joi.string()
-    .alphanum()
+    provincecode: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
     .min(1)
     .max(100)
     .required(),
 
-    country: Joi.string()
-    .alphanum()
+    country: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
     .min(2)
     .max(100)
     .required()

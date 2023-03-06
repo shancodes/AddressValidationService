@@ -1,33 +1,27 @@
 const Joi = require('joi');
+const pattern = /^[a-zA-Z0-9\s]+$/;
 
 const brazil = Joi.object({
     fullName: Joi.string()
-    .alphanum()
     .min(3)
     .max(100)
     .required(),
 
-    addressLine1: Joi.string()
-    .alphanum()
+    addressLine1: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
+    .required(),
+
+    addressLine2: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/)),
+
+    city: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
     .min(3)
     .max(100)
     .required(),
 
-    addressLine2: Joi.string()
-    .alphanum(),
-
-    city: Joi.string()
-    .alphanum()
-    .min(3)
-    .max(100)
+    pincode: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
+    .min(5)
     .required(),
 
-    pincode: Joi.string()
-    .alphanum()
-    .required(),
-
-    country: Joi.string()
-    .alphanum()
+    country: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
     .min(3)
     .max(100)
     .required()
