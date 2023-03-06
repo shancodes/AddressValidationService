@@ -61,7 +61,7 @@ xhr.onreadystatechange = function() {
 
       if (
         (searchTerms['name'] != "" && address.name.toLowerCase().includes(searchTerms['name'])) &&
-        (searchTerms['country'] != "" && address.country.toLowerCase().includes(searchTerms['country'])) ||
+        (searchTerms['country'] != "" && address.country.toLowerCase().includes(searchTerms['country']) || searchTerms['country'] == "all") ||
         (searchTerms['address1'] != "" && address.address1.toLowerCase().includes(searchTerms['address1'])) ||
         (searchTerms['address2'] != "" && address.address2.toLowerCase().includes(searchTerms['address2'])) ||
         (searchTerms['city'] != "" && address.city.toLowerCase().includes(searchTerms['city'])) ||

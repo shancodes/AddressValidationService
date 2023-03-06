@@ -1,37 +1,45 @@
 const stateFields = {
-    Canada: [
-      { label: 'Name', id: 'name', name: 'name', type: 'text' },
-      { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
-      { label: 'Address Line 2', id: 'address2', name: 'address2', type: 'text' },
-      { label: 'City', id: 'city', name: 'city', type: 'text' },
-      { label: 'Province', id: 'state', name: 'state', type: 'text' },
-      { label: 'Postal Code', id: 'postalCode', name: 'postalCode', type: 'text' }
-    ],
-    USA: [
-      { label: 'Name', id: 'name', name: 'name', type: 'text' },
-      { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
-      { label: 'Address Line 2', id: 'address2', name: 'address2', type: 'text' },
-      { label: 'City', id: 'city', name: 'city', type: 'text' },
-      { label: 'State', id: 'state', name: 'state', type: 'text' },
-      { label: 'Zip Code', id: 'postalCode', name: 'postalCode', type: 'text' }
-    ],
-    UK: [
-      { label: 'Name', id: 'name', name: 'name', type: 'text' },
-      { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
-      { label: 'Address Line 2', id: 'address2', name: 'address2', type: 'text' },
-      { label: 'City', id: 'city', name: 'city', type: 'text' },
-      { label: 'Zip Code', id: 'postalCode', name: 'postalCode', type: 'text' }
-    ],
-    India: [
-      { label: 'Name', id: 'name', name: 'name', type: 'text' },
-      { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
-      { label: 'Address Line 2', id: 'address2', name: 'address2', type: 'text' },
-      { label: 'City', id: 'city', name: 'city', type: 'text' },
-      { label: 'State', id: 'state', name: 'state', type: 'text' },
-      { label: 'Pin Code', id: 'postalCode', name: 'postalCode', type: 'text' }
-    ]
-  };
-  
+  Canada: [
+    { label: 'Name', id: 'name', name: 'name', type: 'text' },
+    { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
+    { label: 'Address Line 2', id: 'address2', name: 'address2', type: 'text' },
+    { label: 'City', id: 'city', name: 'city', type: 'text' },
+    { label: 'Province', id: 'state', name: 'state', type: 'text' },
+    { label: 'Postal Code', id: 'postalCode', name: 'postalCode', type: 'text' }
+  ],
+  USA: [
+    { label: 'Name', id: 'name', name: 'name', type: 'text' },
+    { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
+    { label: 'Address Line 2', id: 'address2', name: 'address2', type: 'text' },
+    { label: 'City', id: 'city', name: 'city', type: 'text' },
+    { label: 'State', id: 'state', name: 'state', type: 'text' },
+    { label: 'Zip Code', id: 'postalCode', name: 'postalCode', type: 'text' }
+  ],
+  UK: [
+    { label: 'Name', id: 'name', name: 'name', type: 'text' },
+    { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
+    { label: 'Address Line 2', id: 'address2', name: 'address2', type: 'text' },
+    { label: 'City', id: 'city', name: 'city', type: 'text' },
+    { label: 'Zip Code', id: 'postalCode', name: 'postalCode', type: 'text' }
+  ],
+  India: [
+    { label: 'Name', id: 'name', name: 'name', type: 'text' },
+    { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
+    { label: 'Address Line 2', id: 'address2', name: 'address2', type: 'text' },
+    { label: 'City', id: 'city', name: 'city', type: 'text' },
+    { label: 'State', id: 'state', name: 'state', type: 'text' },
+    { label: 'Pin Code', id: 'postalCode', name: 'postalCode', type: 'text' }
+  ],
+  All: [
+    { label: 'Name', id: 'name', name: 'name', type: 'text' },
+    { label: 'Address Line 1', id: 'address1', name: 'address1', type: 'text' },
+    { label: 'Address Line 2', id: 'address2', name: 'address2', type: 'text' },
+    { label: 'City', id: 'city', name: 'city', type: 'text' },
+    { label: 'State', id: 'state', name: 'state', type: 'text' },
+    { label: 'Zip Code', id: 'postalCode', name: 'postalCode', type: 'text' }
+  ]
+};
+
   const stateContainer = document.querySelector('#state-container');
   const addressForm = document.querySelector('#address-form');
   const submitButton = document.querySelector('#submit');
