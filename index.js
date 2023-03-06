@@ -20,8 +20,20 @@ app.get(`/:country/format`, (req, res) => {
 });
 
 app.get(`/:country/search`, (req, res) => {
-    res.send("TODO Implementation - country search");
+    const requestedCountry = req.params.country.toLowerCase();
+  const matchingAddresses = [];
+  
+  for (let i = 0; i < data.length; i++) {
+    const address = data[i];
+    if (address.country.toLowerCase() === requestedCountry) {
+      matchingAddresses.push(address);
+    }
+  }
+  
+  res.send(matchingAddresses);
 });
+    
+
 
 app.post(`/:country/validate`, (req, res) => {
     console.log(req.params.country);
