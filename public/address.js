@@ -72,6 +72,7 @@ xhr.onreadystatechange = function() {
         matchingAddresses.push(address);
       }
     }
+    searchButton.disabled = true; // disable the button
 
     if (matchingAddresses.length === 0) {
       searchResults.innerHTML = 'No matching addresses found';
@@ -159,4 +160,5 @@ xhr.onreadystatechange = function() {
 
   clearButton.addEventListener('click', () => {
     searchResults.innerHTML = '';
+    searchButton.disabled = false; // enable the button
   });
