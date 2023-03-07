@@ -161,6 +161,9 @@ xhr.onreadystatechange = function() {
         headerCell.textContent = headers[i];
         headerRow.appendChild(headerCell);
       }
+      var headerCell = document.createElement('th');
+      headerCell.textContent = 'Country';
+      headerRow.appendChild(headerCell);
       table.appendChild(headerRow);
     
       for (var i = 0; i < matchingAddresses.length; i++) {
@@ -190,6 +193,10 @@ xhr.onreadystatechange = function() {
         var postalCodeCell = document.createElement('td');
         postalCodeCell.textContent = address.postalCode;
         row.appendChild(postalCodeCell);
+
+        var CountryCell = document.createElement('td');
+        CountryCell.textContent = address.country;
+        row.appendChild(CountryCell);
     
         table.appendChild(row);
 
