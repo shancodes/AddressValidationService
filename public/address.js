@@ -94,7 +94,6 @@ xhr.onreadystatechange = function() {
     
   }
 
-
   searchButton.addEventListener('click', (event) => {
     event.preventDefault();
     var country = document.getElementById('country');
@@ -119,7 +118,11 @@ xhr.onreadystatechange = function() {
     for (let i = 0; i < addresses.length; i++) {
       let address = addresses[i];
 
-      if (
+      if (searchTerms['country'] == "all" && searchTerms['name'] == "" && searchTerms['address1'] == "" && searchTerms['address2'] == ""
+      && searchTerms['city'] == "" && searchTerms['state'] == "" && searchTerms['postalCode'] == "") {
+        matchingAddresses.push(address);
+      }
+      else if (
         // (searchTerms['name'] != "" && address.name.toLowerCase().includes(searchTerms['name'])) &&
         (searchTerms['name'] != "" && address.name.toLowerCase() === searchTerms['name']) &&
         (searchTerms['country'] != "" && address.country.toLowerCase().includes(searchTerms['country']) || searchTerms['country'] == "all") ||
