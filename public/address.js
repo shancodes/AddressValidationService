@@ -120,7 +120,8 @@ xhr.onreadystatechange = function() {
       let address = addresses[i];
 
       if (
-        (searchTerms['name'] != "" && address.name.toLowerCase().includes(searchTerms['name'])) &&
+        // (searchTerms['name'] != "" && address.name.toLowerCase().includes(searchTerms['name'])) &&
+        (searchTerms['name'] != "" && address.name.toLowerCase() === searchTerms['name']) &&
         (searchTerms['country'] != "" && address.country.toLowerCase().includes(searchTerms['country']) || searchTerms['country'] == "all") ||
         (searchTerms['address1'] != "" && address.address1.toLowerCase().includes(searchTerms['address1'])) ||
         (searchTerms['address2'] != "" && address.address2.toLowerCase().includes(searchTerms['address2'])) ||
