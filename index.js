@@ -56,7 +56,7 @@ app.get(`/:country/search`, (req, res) => {
 
   console.log(searchTerms);
     
-  const matchingAddresses = searchFromDB(requestedCountry, searchTerms);
+  const matchingAddresses = searchFromDB(searchTerms, requestedCountry);
   
   res.send(matchingAddresses);
 });
@@ -82,49 +82,48 @@ app.post(`/:country/validate`, (req, res) => {
 });
 
 app.get('/search', (req,res) =>{
-    // define search query
-    const body = req.body;
-    const country = body.country;
-    const name = body.name;
-    const address1 = body.address1;
-    const address2 = body.address2;
-    const city = body.city;
-    const state = body.state;
-    const postalCode = body.postalCode;
-    const searchTerms = {
-        name : getValueFromBody(body,'name'),
-        country : getValueFromBody(body, 'country'),
-        address1 : getValueFromBody(body,'address1'),
-        address2 : getValueFromBody(body,'address2'),
-        city : getValueFromBody(body,'city'),
-        state : getValueFromBody(body,'state'),
-        postalCode: getValueFromBody(body,'postalCode')
-    };
+  const body = req.query;
+  const name = body.name;
+  const address1 = body.address1;
+  const address2 = body.address2;
+  const city = body.city;
+  const state = body.state;
+  const postalCode = body.postalCode;
 
-    const matchingAddresses = [];
+  const searchTerms = {};
 
-    for (let i = 0; i < data.length; i++) {
-      let address = data[i];
-        console.log(address);
-      if (
-        (searchTerms['country'] != "" && address.country.toLowerCase().includes(searchTerms['country'])) && (
-        (searchTerms['address1'] != "" && address.address.toLowerCase().includes(searchTerms['address1'])) ||
-        (searchTerms['city'] != "" && address.city.toLowerCase().includes(searchTerms['city'])) ||
-        (searchTerms['state'] != "" && address.state.toLowerCase().includes(searchTerms['state'])) ||
-        (searchTerms['postalCode'] != "" && address.zipcode.toLowerCase().includes(searchTerms['postalCode'])))
-      )
-      {
-        matchingAddresses.push(address);
-      }
-    }
-    res.send(matchingAddresses);
-    
-})
+  if(name) {
+    searchTerms['name'] = name;
+  }
+
+  if(address1) {
+    searchTerms['address1'] = address1;
+  }
+
+  if(address2) {
+    searchTerms['address2'] = address2;
+  }
+
+  if(city) {
+    searchTerms['city'] = city;
+  }
+
+  if(state) {
+    searchTerms['state'] = state;
+  }
+
+  if(postalCode) {
+    searchTerms['postalCode'] = postalCode;
+  }
+
+  const result = searchFromDB(searchTerms, false);
+
+  res.send(result);
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-
 
 function readFromCSV() {
   // 0 - country, 1 - name, 2, address1, 3 addr2,4 city, 5 state, 6 postal code
@@ -155,7 +154,7 @@ function getValueFromBody(body, value){
     }
 }
 
-function searchFromDB(country, filters) {
+function searchFromDB(filters, country) {
   let matchingRecords = [];
   const keys = Object.keys(filters);
 
@@ -165,13 +164,18 @@ function searchFromDB(country, filters) {
         matchingRecords.push(data[i]);
       }
     }
+  } else {
+    console.log(filters)
+    matchingRecords = data;
   }
 
-  console.log(matchingRecords.length);
+  if(keys.length === 0) {
+    return matchingRecords;
+  }
 
   matchingRecords = matchingRecords.filter(item => {
     for(let i = 0; i < keys.length; i++) {
-      if(!(keys[i] in item) || !item[keys[i]].toLowerCase().includes(filters[keys[i]])) {
+      if(item[keys[i]] && !item[keys[i]].toLowerCase().includes(filters[keys[i]])) {
         return false;
       }
     }

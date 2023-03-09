@@ -83,14 +83,26 @@ const searchRequest = new XMLHttpRequest();
       postalCode: postalCode.value.toLowerCase(),
     };
 
-    // let matchingAddresses = [];
-    const queryParams = buildQueryParams(searchTerms);
+    if(country === 'all') {
+      // let matchingAddresses = [];
+      const queryParams = buildQueryParams(searchTerms);
 
-    console.log(`Country - ${country}`);
-    console.log(queryParams);
+      console.log(`Country - ${country}`);
+      console.log(queryParams);
 
-    searchRequest.open('GET', `http://localhost:3001/${country}/search${queryParams}`);
-    searchRequest.send(JSON.stringify(searchTerms));
+      searchRequest.open('GET', `http://localhost:3001/search${queryParams}`);
+      searchRequest.send(JSON.stringify(searchTerms));
+    } else {
+      // let matchingAddresses = [];
+      const queryParams = buildQueryParams(searchTerms);
+  
+      console.log(`Country - ${country}`);
+      console.log(queryParams);
+  
+      searchRequest.open('GET', `http://localhost:3001/${country}/search${queryParams}`);
+      searchRequest.send(JSON.stringify(searchTerms));
+    }
+
 
     // validateRequest.setRequestHeader('Content-Type', 'application/json');
     // validateRequest.send(JSON.stringify(addressToValidate));
@@ -210,7 +222,98 @@ const searchRequest = new XMLHttpRequest();
   });
 
   searchRequest.onload = () => {
-      alert(searchRequest.responseText);
+
+    const matchingAddresses = JSON.parse(searchRequest.responseText);
+
+      if (matchingAddresses.length === 0) {
+      searchResults.innerHTML = 'No matching addresses found';
+      return;
+    }
+
+    searchResults.innerHTML = '';
+
+    matchingAddresses.forEach(function(address) {
+      var li = document.createElement('li');
+      li.textContent = address.name + ', ' + address.country + ', ' + address.address1 + ', ' + address.city + ', ' + address.state + ', ' + address.postalCode;
+      searchResults.appendChild(li);
+    });
+
+    const selectedCountry = country.value;
+    const fields = stateFields[selectedCountry];
+    const headers = fields.map(field => field.label);
+    displayResults(searchResults);
+
+    function displayResults(searchResults) {
+      var table = document.createElement('table');
+    
+      var headerRow = document.createElement('tr');
+      for (var i = 0; i < headers.length; i++) {
+        var headerCell = document.createElement('th');
+        headerCell.textContent = headers[i];
+        headerRow.appendChild(headerCell);
+      }
+      var headerCell = document.createElement('th');
+      headerCell.textContent = 'Country';
+      headerRow.appendChild(headerCell);
+      table.appendChild(headerRow);
+    
+      for (var i = 0; i < matchingAddresses.length; i++) {
+        var row = document.createElement('tr');
+        var address = matchingAddresses[i];
+    
+        var nameCell = document.createElement('td');
+        nameCell.textContent = address.name;
+        row.appendChild(nameCell);
+    
+        var address1Cell = document.createElement('td');
+        address1Cell.textContent = address.address1;
+        row.appendChild(address1Cell);
+    
+        var address2Cell = document.createElement('td');
+        address2Cell.textContent = address.address2;
+        row.appendChild(address2Cell);
+    
+        var cityCell = document.createElement('td');
+        cityCell.textContent = address.city;
+        row.appendChild(cityCell);
+    
+        var stateCell = document.createElement('td');
+        stateCell.textContent = address.state;
+        row.appendChild(stateCell);
+    
+        var postalCodeCell = document.createElement('td');
+        postalCodeCell.textContent = address.postalCode;
+        row.appendChild(postalCodeCell);
+
+        var CountryCell = document.createElement('td');
+        CountryCell.textContent = address.country;
+        row.appendChild(CountryCell);
+    
+        table.appendChild(row);
+
+        row.addEventListener('click', function() {
+          populateFormFields(address);
+        });
+      }
+    
+      var resultsContainer = document.getElementById('search_results');
+      resultsContainer.innerHTML = '';
+      resultsContainer.appendChild(table);
+    }
+
+    function populateFormFields(address) {
+      document.getElementById('name').value = address.name;
+      document.getElementById('address1').value = address.address1;
+      document.getElementById('address2').value = address.address2;
+      document.getElementById('city').value = address.city;
+      document.getElementById('state').value = address.state;
+      document.getElementById('postalCode').value = address.postalCode;
+
+      if(address2.value == 'undefined')
+        document.getElementById('address2').value = '';
+      address2.focus();
+      searchResults.innerHTML = '';
+    }
   }
 
   clearButton.addEventListener('click', () => {
