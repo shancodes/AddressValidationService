@@ -188,7 +188,7 @@ function displayResults(matchingAddresses) {
     row.appendChild(stateCell);
 
     var postalCodeCell = document.createElement('td');
-    postalCodeCell.textContent = address.postalCode;
+    postalCodeCell.textContent = address.zipcode;
     row.appendChild(postalCodeCell);
 
     var CountryCell = document.createElement('td');
@@ -223,7 +223,7 @@ function populateFormFields(address) {
   document.getElementById('address2').value = address.address2;
   document.getElementById('city').value = address.city;
   document.getElementById('state').value = address.state;
-  document.getElementById('postalCode').value = address.postalCode;
+  document.getElementById('postalCode').value = address.zipcode;
 
   if(address2.value == 'undefined') {
     document.getElementById('address2').value = '';
