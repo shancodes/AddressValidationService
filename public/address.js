@@ -102,231 +102,132 @@ const searchRequest = new XMLHttpRequest();
       searchRequest.open('GET', `http://localhost:3001/${country}/search${queryParams}`);
       searchRequest.send(JSON.stringify(searchTerms));
     }
-
-
-    // validateRequest.setRequestHeader('Content-Type', 'application/json');
-    // validateRequest.send(JSON.stringify(addressToValidate));
-
-    // for (let i = 0; i < addresses.length; i++) {
-    //   let address = addresses[i];
-
-    //   if (searchTerms['country'] == "all" && searchTerms['name'] == "" && searchTerms['address1'] == "" && searchTerms['address2'] == ""
-    //   && searchTerms['city'] == "" && searchTerms['state'] == "" && searchTerms['postalCode'] == "") {
-    //     matchingAddresses.push(address);
-    //   }
-    //   else if (
-    //     // (searchTerms['name'] != "" && address.name.toLowerCase().includes(searchTerms['name'])) &&
-    //     (searchTerms['name'] != "" && address.name.toLowerCase() === searchTerms['name']) &&
-    //     (searchTerms['country'] != "" && address.country.toLowerCase().includes(searchTerms['country']) || searchTerms['country'] == "all") ||
-    //     (searchTerms['address1'] != "" && address.address1.toLowerCase().includes(searchTerms['address1'])) ||
-    //     (searchTerms['address2'] != "" && address.address2.toLowerCase().includes(searchTerms['address2'])) ||
-    //     (searchTerms['city'] != "" && address.city.toLowerCase().includes(searchTerms['city'])) ||
-    //     (searchTerms['state'] != "" && address.state.toLowerCase().includes(searchTerms['state'])) ||
-    //     (searchTerms['postalCode'] != "" && address.postalCode.toLowerCase().includes(searchTerms['postalCode']))
-    //   )
-    //   {
-    //     matchingAddresses.push(address);
-    //   }
-    // }
-    // searchButton.disabled = true; // disable the button
-
-    // if (matchingAddresses.length === 0) {
-    //   searchResults.innerHTML = 'No matching addresses found';
-    //   return;
-    // }
-
-    // searchResults.innerHTML = '';
-
-    // matchingAddresses.forEach(function(address) {
-    //   var li = document.createElement('li');
-    //   li.textContent = address.name + ', ' + address.country + ', ' + address.address1 + ', ' + address.city + ', ' + address.state + ', ' + address.postalCode;
-    //   searchResults.appendChild(li);
-    // });
-
-    // const selectedCountry = country.value;
-    // const fields = stateFields[selectedCountry];
-    // const headers = fields.map(field => field.label);
-    // displayResults(searchResults);
-
-    // function displayResults(searchResults) {
-    //   var table = document.createElement('table');
-    
-    //   var headerRow = document.createElement('tr');
-    //   for (var i = 0; i < headers.length; i++) {
-    //     var headerCell = document.createElement('th');
-    //     headerCell.textContent = headers[i];
-    //     headerRow.appendChild(headerCell);
-    //   }
-    //   var headerCell = document.createElement('th');
-    //   headerCell.textContent = 'Country';
-    //   headerRow.appendChild(headerCell);
-    //   table.appendChild(headerRow);
-    
-    //   for (var i = 0; i < matchingAddresses.length; i++) {
-    //     var row = document.createElement('tr');
-    //     var address = matchingAddresses[i];
-    
-    //     var nameCell = document.createElement('td');
-    //     nameCell.textContent = address.name;
-    //     row.appendChild(nameCell);
-    
-    //     var address1Cell = document.createElement('td');
-    //     address1Cell.textContent = address.address1;
-    //     row.appendChild(address1Cell);
-    
-    //     var address2Cell = document.createElement('td');
-    //     address2Cell.textContent = address.address2;
-    //     row.appendChild(address2Cell);
-    
-    //     var cityCell = document.createElement('td');
-    //     cityCell.textContent = address.city;
-    //     row.appendChild(cityCell);
-    
-    //     var stateCell = document.createElement('td');
-    //     stateCell.textContent = address.state;
-    //     row.appendChild(stateCell);
-    
-    //     var postalCodeCell = document.createElement('td');
-    //     postalCodeCell.textContent = address.postalCode;
-    //     row.appendChild(postalCodeCell);
-
-    //     var CountryCell = document.createElement('td');
-    //     CountryCell.textContent = address.country;
-    //     row.appendChild(CountryCell);
-    
-    //     table.appendChild(row);
-
-    //     row.addEventListener('click', function() {
-    //       populateFormFields(address);
-    //     });
-    //   }
-    
-    //   var resultsContainer = document.getElementById('search_results');
-    //   resultsContainer.innerHTML = '';
-    //   resultsContainer.appendChild(table);
-    // }
-
-    // function populateFormFields(address) {
-    //   document.getElementById('name').value = address.name;
-    //   document.getElementById('address1').value = address.address1;
-    //   document.getElementById('address2').value = address.address2;
-    //   document.getElementById('city').value = address.city;
-    //   document.getElementById('state').value = address.state;
-    //   document.getElementById('postalCode').value = address.postalCode;
-
-    //   if(address2.value == 'undefined')
-    //     document.getElementById('address2').value = '';
-    //   address2.focus();
-    //   searchResults.innerHTML = '';
-    // }
   });
 
   searchRequest.onload = () => {
 
     const matchingAddresses = JSON.parse(searchRequest.responseText);
 
-      if (matchingAddresses.length === 0) {
+    if (matchingAddresses.length === 0) {
       searchResults.innerHTML = 'No matching addresses found';
       return;
     }
 
-    searchResults.innerHTML = '';
-
-    matchingAddresses.forEach(function(address) {
-      var li = document.createElement('li');
-      li.textContent = address.name + ', ' + address.country + ', ' + address.address1 + ', ' + address.city + ', ' + address.state + ', ' + address.postalCode;
-      searchResults.appendChild(li);
-    });
-
-    const selectedCountry = country.value;
-    const fields = stateFields[selectedCountry];
-    const headers = fields.map(field => field.label);
-    displayResults(searchResults);
-
-    function displayResults(searchResults) {
-      var table = document.createElement('table');
-    
-      var headerRow = document.createElement('tr');
-      for (var i = 0; i < headers.length; i++) {
-        var headerCell = document.createElement('th');
-        headerCell.textContent = headers[i];
-        headerRow.appendChild(headerCell);
-      }
-      var headerCell = document.createElement('th');
-      headerCell.textContent = 'Country';
-      headerRow.appendChild(headerCell);
-      table.appendChild(headerRow);
-    
-      for (var i = 0; i < matchingAddresses.length; i++) {
-        var row = document.createElement('tr');
-        var address = matchingAddresses[i];
-    
-        var nameCell = document.createElement('td');
-        nameCell.textContent = address.name;
-        row.appendChild(nameCell);
-    
-        var address1Cell = document.createElement('td');
-        address1Cell.textContent = address.address1;
-        row.appendChild(address1Cell);
-    
-        var address2Cell = document.createElement('td');
-        address2Cell.textContent = address.address2;
-        row.appendChild(address2Cell);
-    
-        var cityCell = document.createElement('td');
-        cityCell.textContent = address.city;
-        row.appendChild(cityCell);
-    
-        var stateCell = document.createElement('td');
-        stateCell.textContent = address.state;
-        row.appendChild(stateCell);
-    
-        var postalCodeCell = document.createElement('td');
-        postalCodeCell.textContent = address.postalCode;
-        row.appendChild(postalCodeCell);
-
-        var CountryCell = document.createElement('td');
-        CountryCell.textContent = address.country;
-        row.appendChild(CountryCell);
-    
-        table.appendChild(row);
-
-        row.addEventListener('click', function() {
-          populateFormFields(address);
-        });
-      }
-    
-      var resultsContainer = document.getElementById('search_results');
-      resultsContainer.innerHTML = '';
-      resultsContainer.appendChild(table);
-    }
-
-    function populateFormFields(address) {
-      document.getElementById('name').value = address.name;
-      document.getElementById('address1').value = address.address1;
-      document.getElementById('address2').value = address.address2;
-      document.getElementById('city').value = address.city;
-      document.getElementById('state').value = address.state;
-      document.getElementById('postalCode').value = address.postalCode;
-
-      if(address2.value == 'undefined')
-        document.getElementById('address2').value = '';
-      address2.focus();
-      searchResults.innerHTML = '';
-    }
+    displayResults(matchingAddresses);
   }
 
-  clearButton.addEventListener('click', () => {
-    searchResults.innerHTML = '';
-    searchButton.disabled = false; // enable the button
+clearButton.addEventListener('click', () => {
+  searchResults.innerHTML = '';
+  searchButton.disabled = false; // enable the button
+});
+
+function buildQueryParams(object) {
+  const objString = '?' + Object.keys(object).map(key => {
+
+    return `${key}=${encodeURIComponent(object[key])}`;
+
+  }).join('&');
+
+  return objString;
+}
+
+function displayResults(matchingAddresses) {
+  let searchResults = document.getElementById('search_results');
+
+  searchResults.innerHTML = '';
+
+  matchingAddresses.forEach(function(address) {
+    var li = document.createElement('li');
+    li.textContent = address.name + ', ' + address.country + ', ' + address.address1 + ', ' + address.city + ', ' + address.state + ', ' + address.zipCode;
+    searchResults.appendChild(li);
   });
 
-  function buildQueryParams(object) {
-    const objString = '?' + Object.keys(object).map(key => {
+  const selectedCountry = country.value;
+  const fields = stateFields[selectedCountry];
+  const headers = fields.map(field => field.label);
+  headers.push('select');
 
-      return `${key}=${encodeURIComponent(object[key])}`;
+  var table = document.createElement('table');
 
-    }).join('&');
-
-    return objString;
+  var headerRow = document.createElement('tr');
+  for (var i = 0; i < headers.length; i++) {
+    var headerCell = document.createElement('th');
+    headerCell.textContent = headers[i];
+    headerRow.appendChild(headerCell);
   }
+  var headerCell = document.createElement('th');
+  headerCell.textContent = 'Country';
+  headerRow.appendChild(headerCell);
+  table.appendChild(headerRow);
+
+  var buttons = [];
+
+  for (var i = 0; i < matchingAddresses.length; i++) {
+    var row = document.createElement('tr');
+    row.setAttribute('id', `${address-i}`);
+    var address = matchingAddresses[i];
+
+    var nameCell = document.createElement('td');
+    nameCell.textContent = address.name;
+    row.appendChild(nameCell);
+
+    var address1Cell = document.createElement('td');
+    address1Cell.textContent = address.address1;
+    row.appendChild(address1Cell);
+
+    var address2Cell = document.createElement('td');
+    address2Cell.textContent = address.address2;
+    row.appendChild(address2Cell);
+
+    var cityCell = document.createElement('td');
+    cityCell.textContent = address.city;
+    row.appendChild(cityCell);
+
+    var stateCell = document.createElement('td');
+    stateCell.textContent = address.state;
+    row.appendChild(stateCell);
+
+    var postalCodeCell = document.createElement('td');
+    postalCodeCell.textContent = address.postalCode;
+    row.appendChild(postalCodeCell);
+
+    var CountryCell = document.createElement('td');
+    CountryCell.textContent = address.country;
+    row.appendChild(CountryCell);
+    
+    var btn = document.createElement('input');
+    btn.type = "button";
+    btn.setAttribute('id', `address-${i}`);
+    btn.value = 'select address';
+    row.appendChild(btn);
+    table.appendChild(row);
+
+    buttons.push(btn);
+  }
+
+  for(let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', () => {
+      populateFormFields(matchingAddresses[i]);
+    })
+  }
+
+  searchResults.innerHTML = '';
+  searchResults.appendChild(table);
+}
+
+function populateFormFields(address) {
+  console.log(address);
+  let searchResults = document.getElementById('search_results');
+  document.getElementById('name').value = address.name;
+  document.getElementById('address1').value = address.address1;
+  document.getElementById('address2').value = address.address2;
+  document.getElementById('city').value = address.city;
+  document.getElementById('state').value = address.state;
+  document.getElementById('postalCode').value = address.postalCode;
+
+  if(address2.value == 'undefined') {
+    document.getElementById('address2').value = '';
+  }
+  address2.focus();
+  searchResults.innerHTML = '';
+}
