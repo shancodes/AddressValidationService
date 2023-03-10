@@ -67,24 +67,7 @@ const searchRequest = new XMLHttpRequest();
 
   searchButton.addEventListener('click', (event) => {
     event.preventDefault();
-    var countriesWithState = ['india','usa','mexico','canada'];
-    // var country = document.getElementById('country').selectedOptions[0].value.toLowerCase();
-    // var name = document.getElementById('name');
-    // var address1= document.getElementById('address1');
-    // var address2= document.getElementById('address2');
-    // var city= document.getElementById('city');
     
-    // var state= document.getElementById('state');
-    // var postalCode= document.getElementById('postalCode');
-    // var searchTerms = {
-    //   name: name.value.toLowerCase(),
-    //   address1: address1.value.toLowerCase(),
-    //   address2: address2.value.toLowerCase(),
-    //   city: city.value.toLowerCase(),
-    //   state: state.value.toLowerCase(),
-    //   postalCode: postalCode.value.toLowerCase(),
-    // };
-
     var searchTerms = {}
 
     const country = document.getElementById('country').selectedOptions[0].value.toLowerCase();
