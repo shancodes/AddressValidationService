@@ -185,7 +185,7 @@ function displayResults(matchingAddresses) {
   const selectedCountry = country.value;
   const fields = stateFields[selectedCountry];
   const headers = fields.map(field => field.label);
-  headers.push('select');
+  
 
   var table = document.createElement('table');
 
@@ -198,6 +198,11 @@ function displayResults(matchingAddresses) {
   var headerCell = document.createElement('th');
   headerCell.textContent = 'Country';
   headerRow.appendChild(headerCell);
+  table.appendChild(headerRow);
+
+  var selectHeader = document.createElement('th');
+  selectHeader.textContent = 'Select';
+  headerRow.appendChild(selectHeader);
   table.appendChild(headerRow);
 
   var buttons = [];
