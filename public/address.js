@@ -67,21 +67,61 @@ const searchRequest = new XMLHttpRequest();
 
   searchButton.addEventListener('click', (event) => {
     event.preventDefault();
-    var country = document.getElementById('country').selectedOptions[0].value.toLowerCase();
-    var name = document.getElementById('name');
-    var address1= document.getElementById('address1');
-    var address2= document.getElementById('address2');
-    var city= document.getElementById('city');
-    var state= document.getElementById('state');
-    var postalCode= document.getElementById('postalCode');
-    var searchTerms = {
-      name: name.value.toLowerCase(),
-      address1: address1.value.toLowerCase(),
-      address2: address2.value.toLowerCase(),
-      city: city.value.toLowerCase(),
-      state: state.value.toLowerCase(),
-      postalCode: postalCode.value.toLowerCase(),
-    };
+    var countriesWithState = ['india','usa','mexico','canada'];
+    // var country = document.getElementById('country').selectedOptions[0].value.toLowerCase();
+    // var name = document.getElementById('name');
+    // var address1= document.getElementById('address1');
+    // var address2= document.getElementById('address2');
+    // var city= document.getElementById('city');
+    
+    // var state= document.getElementById('state');
+    // var postalCode= document.getElementById('postalCode');
+    // var searchTerms = {
+    //   name: name.value.toLowerCase(),
+    //   address1: address1.value.toLowerCase(),
+    //   address2: address2.value.toLowerCase(),
+    //   city: city.value.toLowerCase(),
+    //   state: state.value.toLowerCase(),
+    //   postalCode: postalCode.value.toLowerCase(),
+    // };
+
+    var searchTerms = {}
+
+    const country = document.getElementById('country').selectedOptions[0].value.toLowerCase();
+    const name = document.getElementById('name')?.value;
+    const address1= document.getElementById('address1')?.value;
+    const address2= document.getElementById('address2')?.value;
+    const city= document.getElementById('city')?.value;
+    const state= document.getElementById('state')?.value;
+    const postalCode= document.getElementById('postalCode')?.value;
+    if (country) {
+      console.log(country);
+      searchTerms['country'] = country.toLowerCase();
+    }
+    if (state) {
+      console.log(state);
+      searchTerms['state'] = state.toLowerCase();
+    }
+    if (city) {
+      console.log(city);
+      searchTerms['city'] = city.toLowerCase();
+    }
+    if(postalCode) {
+      console.log(postalCode);
+      searchTerms['zipCode'] = postalCode.toLowerCase();
+    }
+    if(address1) {
+      console.log(address1);
+      searchTerms['addressLine1'] = address1.toLowerCase();
+    }
+    if(address2) {
+      console.log(address2);
+      searchTerms['addressLine2'] = address2.toLowerCase();
+    }
+    if(name) {
+      console.log(name);
+      searchTerms['name'] = name.toLowerCase();
+    }
 
     if(country === 'all') {
       // let matchingAddresses = [];
