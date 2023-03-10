@@ -24,6 +24,7 @@ const usa = Joi.object({
     .required(),
 
     zipCode: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
+    .length(5)
     .required(),
 
     country: Joi.string().pattern(new RegExp(/^[a-zA-Z0-9\s]+$/))
