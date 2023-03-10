@@ -112,11 +112,11 @@ const searchRequest = new XMLHttpRequest();
     }
     if(address1) {
       console.log(address1);
-      searchTerms['addressLine1'] = address1.toLowerCase();
+      searchTerms['address1'] = address1.toLowerCase();
     }
     if(address2) {
       console.log(address2);
-      searchTerms['addressLine2'] = address2.toLowerCase();
+      searchTerms['address2'] = address2.toLowerCase();
     }
     if(name) {
       console.log(name);
