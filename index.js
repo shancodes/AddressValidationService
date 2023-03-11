@@ -131,6 +131,9 @@ function readFromCSV() {
   const contents = fs.readFileSync("./address.csv", {encoding:'utf8', flag:'r'});
   const lines = contents.split("\n");
   for(let i = 0; i < lines.length; i++) {
+    if(lines[i] === "") {
+      continue;
+    }
       const address = {};
       const objects = lines[i].split(',');
       address['country'] = objects[0];
@@ -173,15 +176,33 @@ function searchFromDB(filters, country) {
     return matchingRecords;
   }
 
-  matchingRecords = matchingRecords.filter(item => {
-    for(let i = 0; i < keys.length; i++) {
-      if(item[keys[i]] && !item[keys[i]].toLowerCase().includes(filters[keys[i]])) {
-        return false;
-      }
-    }
+  // matchingRecords = matchingRecords.filter(item => {
+  //   for(let i = 0; i < keys.length; i++) {
+  //     if(item[keys[i]] && !item[keys[i]].toLowerCase().includes(filters[keys[i]])) {
+  //       return false;
+  //     }
+  //   }
 
-    return true;
-  });
+  //   return true;
+  // });
+
+  console.log(matchingRecords.length);
+
+  matchingRecords = matchingRecords.filter(item => isMatching(item, filters));
 
   return matchingRecords;
+}
+
+function isMatching(address, query){
+  const keys = Object.keys(query);
+  for(let i = 0; i < keys.length; i++) {
+    if(keys[i] === 'name') {
+      if(address.name.toLowerCase() !== query.name) {
+        return false;
+      }
+    } else if(!address[keys[i]].toLowerCase().includes(query[keys[i]])) {
+      return false;
+    }
+  }
+  return true;
 }
