@@ -7,7 +7,10 @@ const fs = require("fs");
 const app = express()
 const port = 3001
 const data = readFromCSV();
+
+//To serve files in public folder as Static web page
 app.use(express.static('public'));
+//Parses User Request Body and adds it to req object that can used by the handlers
 app.use(bodyparser.json());
 
 app.get('/', (req, res) => {
